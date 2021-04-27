@@ -73,6 +73,7 @@
 		'use strict'
 
 		let usuario;
+		let quantidadeVotos = 0;
 		const user = [];
 		const td = document.querySelectorAll("td");
 
@@ -91,8 +92,10 @@
 
 			if (i % 2 == 0) {
 				td[i].innerText = user[i].name.first + " " + user[i].name.last;
+				td[i  + 5].innerText = quantidadeVotos;
 			} else {
 				td[i + 5].innerText = user[i].name.first + " " + user[i].name.last;
+				td[i].innerText = quantidadeVotos;
 			}
 		}
 
@@ -143,17 +146,15 @@
 
 		function computarVoto() {
 			if (verificarVoto()) {
-				let quantidadeVotos = 0;
 				user.forEach(element => {
 					if (user[element].dob.age.equals(document.getElementById("voto").value)) {
-						if (aux % 2 != 0) {
-							td[aux].innerText = quantidadeVotos++;
+						if (aux % 2 == 0) {
+							td[aux  + 5].innerText = quantidadeVotos++;
 						} else {
-							td[aux - 5].innerText = quantidadeVotos++;
+							td[aux].innerText = quantidadeVotos++;
 						}
 					}
 				});
-
 				alert("FIM !")
 				card.setAttribute("style", "display: block;")
 			}
