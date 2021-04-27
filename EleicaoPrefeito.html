@@ -25,6 +25,11 @@
 			width: 100%;
 			border-collapse: collapse;
 		}
+
+		#botaoEstatisticas {
+			margin-left: 1320px;
+			margin-top: 600px;
+		}
 	</style>
 </head>
 
@@ -49,25 +54,25 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td id="linhaCandidato"></td>
+					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td id="linhaCandidato"></td>
+					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td id="linhaCandidato"></td>
+					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td id="linhaCandidato"></td>
+					<td></td>
 					<td></td>
 				</tr>
 			</table>
 		</div>
 		<button id="botaoEstatisticas" type="button" class="btn btn-light"
-			style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">Apuração dos votos</button>
+			style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">Apuração dos Votos</button>
 	</div>
 	<script>
 		'use strict'
@@ -78,6 +83,7 @@
 		const td = document.querySelectorAll("td");
 
 		for (let i = 0; i < 5; i++) {
+
 			const xhr = new XMLHttpRequest();
 
 			xhr.onreadystatechange = function () {
@@ -91,11 +97,11 @@
 			user[i] = usuario.results[0];
 
 			if (i % 2 == 0) {
-				td[i].innerText = user[i].name.first + " " + user[i].name.last;
-				td[i  + 5].innerText = quantidadeVotos;
+				td[i + i].innerText = user[i].name.first + " " + user[i].name.last;
+				td[(i * 2) + 1].innerText = quantidadeVotos;
 			} else {
-				td[i + 5].innerText = user[i].name.first + " " + user[i].name.last;
-				td[i].innerText = quantidadeVotos;
+				td[i + i].innerText = user[i].name.first + " " + user[i].name.last;
+				td[(i * 2) + 1].innerText = quantidadeVotos;
 			}
 		}
 
@@ -148,10 +154,10 @@
 			if (verificarVoto()) {
 				user.forEach(element => {
 					if (user[element].dob.age.equals(document.getElementById("voto").value)) {
-						if (aux % 2 == 0) {
-							td[aux  + 5].innerText = quantidadeVotos++;
+						if (element % 2 == 0) {
+							td[(element * 2) + 1].innerText = quantidadeVotos++;
 						} else {
-							td[aux].innerText = quantidadeVotos++;
+							td[(element * 2) + 1].innerText = quantidadeVotos++;
 						}
 					}
 				});
